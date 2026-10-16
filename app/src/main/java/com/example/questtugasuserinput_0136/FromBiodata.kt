@@ -371,3 +371,26 @@ private fun FormTextField(
         )
     )
 }
+
+@Composable
+private fun SkillCheckbox(
+    label: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(2.dp)
+    ) {
+        Checkbox(
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+            modifier = Modifier.size(30.dp)
+        )
+
+        Text(
+            text = label,
+            fontSize = 9.sp
+        )
+    }
+}
