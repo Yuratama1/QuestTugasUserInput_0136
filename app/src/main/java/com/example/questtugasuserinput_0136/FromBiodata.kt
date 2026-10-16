@@ -46,8 +46,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
@@ -80,7 +82,7 @@ fun FormBiodata() {
     var experienceExpanded by remember { mutableStateOf(false) }
     var showResult by remember { mutableStateOf(false) }
 
-    // Popup hilang otomatis setelah 5 detik.
+    // Popup menghilang otomatis setelah 5 detik.
     LaunchedEffect(showResult) {
         if (showResult) {
             delay(5000)
@@ -149,7 +151,7 @@ fun FormBiodata() {
                     .verticalScroll(rememberScrollState())
                     .padding(horizontal = horizontalPadding)
                     .padding(bottom = cardPadding)
-                    .offset(y = headerHeight - 20.dp),
+                    .offset(y = headerHeight),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
@@ -177,9 +179,9 @@ fun FormBiodata() {
                             text = stringResource(R.string.form_title),
                             modifier = Modifier.fillMaxWidth(),
                             color = purple,
-                            fontSize = 20.sp,
+                            fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                            textAlign = TextAlign.Center
                         )
 
                         Text(
@@ -187,7 +189,7 @@ fun FormBiodata() {
                             modifier = Modifier.fillMaxWidth(),
                             color = hintColor,
                             fontSize = 10.sp,
-                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                            textAlign = TextAlign.Center
                         )
 
                         Spacer(modifier = Modifier.height(fieldSpacing))
@@ -230,13 +232,13 @@ fun FormBiodata() {
                                 OutlinedTextField(
                                     value = birthDate,
                                     onValueChange = {},
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable {
-                                            datePicker.show()
-                                        },
+                                    modifier = Modifier.fillMaxWidth(),
                                     readOnly = true,
                                     singleLine = true,
+                                    textStyle = TextStyle(
+                                        fontSize = 12.sp,
+                                        color = Color(0xFF303030)
+                                    ),
                                     label = {
                                         Text(
                                             stringResource(R.string.birth_date),
@@ -248,13 +250,20 @@ fun FormBiodata() {
                                             text = "▦",
                                             modifier = Modifier.clickable {
                                                 datePicker.show()
-                                            }
+                                            },
+                                            color = Color(0xFF555555)
                                         )
                                     },
                                     shape = RoundedCornerShape(10.dp),
                                     colors = OutlinedTextFieldDefaults.colors(
+                                        focusedTextColor = Color(0xFF303030),
+                                        unfocusedTextColor = Color(0xFF303030),
+                                        focusedLabelColor = purple,
+                                        unfocusedLabelColor = Color(0xFF666666),
                                         focusedBorderColor = purple,
-                                        unfocusedBorderColor = borderColor
+                                        unfocusedBorderColor = borderColor,
+                                        focusedContainerColor = Color.White,
+                                        unfocusedContainerColor = Color.White
                                     )
                                 )
 
@@ -271,13 +280,13 @@ fun FormBiodata() {
                                 OutlinedTextField(
                                     value = experience,
                                     onValueChange = {},
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable {
-                                            experienceExpanded = true
-                                        },
+                                    modifier = Modifier.fillMaxWidth(),
                                     readOnly = true,
                                     singleLine = true,
+                                    textStyle = TextStyle(
+                                        fontSize = 12.sp,
+                                        color = Color(0xFF303030)
+                                    ),
                                     label = {
                                         Text(
                                             stringResource(R.string.experience),
@@ -289,13 +298,20 @@ fun FormBiodata() {
                                             text = "⌄",
                                             modifier = Modifier.clickable {
                                                 experienceExpanded = true
-                                            }
+                                            },
+                                            color = Color(0xFF555555)
                                         )
                                     },
                                     shape = RoundedCornerShape(10.dp),
                                     colors = OutlinedTextFieldDefaults.colors(
+                                        focusedTextColor = Color(0xFF303030),
+                                        unfocusedTextColor = Color(0xFF303030),
+                                        focusedLabelColor = purple,
+                                        unfocusedLabelColor = Color(0xFF666666),
                                         focusedBorderColor = purple,
-                                        unfocusedBorderColor = borderColor
+                                        unfocusedBorderColor = borderColor,
+                                        focusedContainerColor = Color.White,
+                                        unfocusedContainerColor = Color.White
                                     )
                                 )
 
@@ -384,7 +400,7 @@ fun FormBiodata() {
         }
     }
 
-    // Popup hanya menampilkan data biodata.
+    // Popup hasil biodata tanpa tombol OK.
     if (showResult && isFormValid) {
         AlertDialog(
             onDismissRequest = {
@@ -401,20 +417,9 @@ fun FormBiodata() {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = "Email: $email",
-                        color = Color.White
-                    )
-
-                    Text(
-                        text = "Tanggal Lahir: $birthDate",
-                        color = Color.White
-                    )
-
-                    Text(
-                        text = "Experience: $experience",
-                        color = Color.White
-                    )
+                    Text("Email: $email", color = Color.White)
+                    Text("Tanggal Lahir: $birthDate", color = Color.White)
+                    Text("Experience: $experience", color = Color.White)
 
                     Text(
                         text = "Skill: " + listOfNotNull(
@@ -447,21 +452,33 @@ private fun FormTextField(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        modifier = modifier,
+        modifier = modifier.height(44.dp),
         label = {
             Text(
                 text = label,
-                fontSize = 10.sp
+                fontSize = 10.sp,
+                color = Color(0xFF666666)
             )
         },
         singleLine = true,
+        textStyle = TextStyle(
+            fontSize = 12.sp,
+            color = Color(0xFF303030)
+        ),
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType
         ),
         shape = RoundedCornerShape(10.dp),
         colors = OutlinedTextFieldDefaults.colors(
+            focusedTextColor = Color(0xFF303030),
+            unfocusedTextColor = Color(0xFF303030),
+            focusedLabelColor = colorResource(R.color.purple_primary),
+            unfocusedLabelColor = Color(0xFF666666),
+            cursorColor = colorResource(R.color.purple_primary),
             focusedBorderColor = colorResource(R.color.purple_primary),
-            unfocusedBorderColor = borderColor
+            unfocusedBorderColor = borderColor,
+            focusedContainerColor = Color.White,
+            unfocusedContainerColor = Color.White
         )
     )
 }
@@ -484,7 +501,8 @@ private fun SkillCheckbox(
 
         Text(
             text = label,
-            fontSize = 9.sp
+            fontSize = 9.sp,
+            color = Color(0xFF303030)
         )
     }
 }
