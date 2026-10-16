@@ -83,4 +83,260 @@ fun FormBiodata() {
                 contentScale = ContentScale.Crop
             )
 
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = horizontalPadding)
+                    .padding(bottom = cardPadding)
+                    .offset(y = headerHeight - 20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                ElevatedCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(
+                        dimensionResource(R.dimen.form_corner_radius)
+                    ),
+                    colors = CardDefaults.elevatedCardColors(
+                        containerColor = colorResource(R.color.form_white)
+                    ),
+                    elevation = CardDefaults.elevatedCardElevation(
+                        defaultElevation = 6.dp
+                    )
+                ) {
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(cardPadding),
+                        verticalArrangement = Arrangement.spacedBy(fieldSpacing)
+                    ) {
+
+                        Text(
+                            text = stringResource(R.string.form_title),
+                            modifier = Modifier.fillMaxWidth(),
+                            color = purple,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        )
+
+                        Text(
+                            text = stringResource(R.string.form_description),
+                            modifier = Modifier.fillMaxWidth(),
+                            color = hintColor,
+                            fontSize = 10.sp,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        )
+
+                        Spacer(modifier = Modifier.height(fieldSpacing))
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(fieldSpacing)
+                        ) {
+                            FormTextField(
+                                value = firstName,
+                                onValueChange = { firstName = it },
+                                label = stringResource(R.string.first_name),
+                                modifier = Modifier.weight(1f),
+                                borderColor = borderColor
+                            )
+
+                            FormTextField(
+                                value = lastName,
+                                onValueChange = { lastName = it },
+                                label = stringResource(R.string.last_name),
+                                modifier = Modifier.weight(1f),
+                                borderColor = borderColor
+                            )
+                        }
+
+                        FormTextField(
+                            value = email,
+                            onValueChange = { email = it },
+                            label = stringResource(R.string.email),
+                            modifier = Modifier.fillMaxWidth(),
+                            borderColor = borderColor,
+                            keyboardType = KeyboardType.Email
+                        )
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(fieldSpacing)
+                        ) {
+                            Box(modifier = Modifier.weight(1f)) {
+                                OutlinedTextField(
+                                    value = birthDate,
+                                    onValueChange = {},
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            datePicker.show()
+                                        },
+                                    readOnly = true,
+                                    singleLine = true,
+                                    label = {
+                                        Text(
+                                            stringResource(R.string.birth_date),
+                                            fontSize = 10.sp
+                                        )
+                                    },
+                                    trailingIcon = {
+                                        Text(
+                                            text = "▦",
+                                            modifier = Modifier.clickable {
+                                                datePicker.show()
+                                            }
+                                        )
+                                    },
+                                    shape = RoundedCornerShape(10.dp),
+                                    colors = OutlinedTextFieldDefaults.colors(
+                                        focusedBorderColor = purple,
+                                        unfocusedBorderColor = borderColor
+                                    )
+                                )
+
+                                Box(
+                                    modifier = Modifier
+                                        .matchParentSize()
+                                        .clickable { datePicker.show() }
+                                )
+                            }
+
+                            Box(modifier = Modifier.weight(1f)) {
+                                OutlinedTextField(
+                                    value = experience,
+                                    onValueChange = {},
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            experienceExpanded = true
+                                        },
+                                    readOnly = true,
+                                    singleLine = true,
+                                    label = {
+                                        Text(
+                                            stringResource(R.string.experience),
+                                            fontSize = 10.sp
+                                        )
+                                    },
+                                    trailingIcon = {
+                                        Text(
+                                            text = "⌄",
+                                            modifier = Modifier.clickable {
+                                                experienceExpanded = true
+                                            }
+                                        )
+                                    },
+                                    shape = RoundedCornerShape(10.dp),
+                                    colors = OutlinedTextFieldDefaults.colors(
+                                        focusedBorderColor = purple,
+                                        unfocusedBorderColor = borderColor
+                                    )
+                                )
+
+                                Box(
+                                    modifier = Modifier
+                                        .matchParentSize()
+                                        .clickable {
+                                            experienceExpanded = true
+                                        }
+                                )
+
+                                DropdownMenu(
+                                    expanded = experienceExpanded,
+                                    onDismissRequest = {
+                                        experienceExpanded = false
+                                    }
+                                ) {
+                                    experienceOptions.forEach { option ->
+                                        DropdownMenuItem(
+                                            text = { Text(option) },
+                                            onClick = {
+                                                experience = option
+                                                experienceExpanded = false
+                                            }
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
+                        Text(
+                            text = stringResource(R.string.skill_title),
+                            color = colorResource(R.color.form_text),
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            SkillCheckbox(
+                                label = stringResource(R.string.skill_android),
+                                checked = androidSkill,
+                                onCheckedChange = { androidSkill = it }
+                            )
+
+                            SkillCheckbox(
+                                label = stringResource(R.string.skill_uiux),
+                                checked = uiuxSkill,
+                                onCheckedChange = { uiuxSkill = it }
+                            )
+
+                            SkillCheckbox(
+                                label = stringResource(R.string.skill_web),
+                                checked = webSkill,
+                                onCheckedChange = { webSkill = it }
+                            )
+                        }
+
+                        Button(
+                            onClick = { showResult = true },
+                            enabled = isFormValid,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(44.dp),
+                            shape = RoundedCornerShape(10.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = purple,
+                                disabledContainerColor = disabledColor,
+                                contentColor = Color.White,
+                                disabledContentColor = Color.White
+                            )
+                        ) {
+                            Text(
+                                text = stringResource(R.string.proceed),
+                                fontSize = 11.sp
+                            )
+                        }
+
+                        if (showResult && isFormValid) {
+                            Text(
+                                text = """
+                                    Nama: $firstName $lastName
+                                    Email: $email
+                                    Tanggal lahir: $birthDate
+                                    Experience: $experience
+                                    Skill: ${
+                                    listOfNotNull(
+                                        if (androidSkill) "Android" else null,
+                                        if (uiuxSkill) "UI/UX" else null,
+                                        if (webSkill) "Web" else null
+                                    ).joinToString()
+                                }
+                                """.trimIndent(),
+                                color = colorResource(R.color.form_text),
+                                fontSize = 12.sp
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
