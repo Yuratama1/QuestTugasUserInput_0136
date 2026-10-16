@@ -15,4 +15,6 @@
     <color name="form_border">#B8B8C2</color>
     <color name="form_disabled">#E0E0E0</color>
     <color name="screen_background">#F5F5F5</color>
+
+    <color name="popup_background">#29292F</color>
 </resources>

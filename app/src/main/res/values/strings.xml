@@ -15,4 +15,17 @@
     <string name="select_experience">Pilih pengalaman</string>
     <string name="date_not_selected">Pilih tanggal lahir</string>
     <string name="error_required">Bagian ini wajib diisi</string>
+
+    <string name="date_format">%1$02d/%2$02d/%3$04d</string>
+    <string name="header_description">Header Form Biodata</string>
+    <string name="experience_beginner">Beginner</string>
+    <string name="experience_intermediate">Intermediate</string>
+    <string name="experience_advanced">Advanced</string>
+    <string name="date_picker_icon">▦</string>
+    <string name="dropdown_icon">⌄</string>
+    <string name="result_title">%1$s %2$s</string>
+    <string name="result_email">Email: %1$s</string>
+    <string name="result_birth_date">Tanggal Lahir: %1$s</string>
+    <string name="result_experience">Experience: %1$s</string>
+    <string name="result_skill">Skill: %1$s</string>
 </resources>
