@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Form Biodata</string>
     <string name="form_title">Form Biodata</string>
+    <string name="form_description">Silahkan isi biodata Anda dibawah ini</string>
 </resources>
