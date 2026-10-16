@@ -14,4 +14,5 @@
     <string name="proceed">Proceed</string>
     <string name="select_experience">Pilih pengalaman</string>
     <string name="date_not_selected">Pilih tanggal lahir</string>
+    <string name="error_required">Bagian ini wajib diisi</string>
 </resources>
