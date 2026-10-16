@@ -62,5 +62,25 @@ fun FormBiodata() {
                 experience.isNotBlank() &&
                 (androidSkill || uiuxSkill || webSkill)
 
+    Scaffold(
+        containerColor = screenBackground
+    ) { innerPadding ->
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .background(screenBackground)
+        ) {
+
+            Image(
+                painter = painterResource(R.drawable.header_neon),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(headerHeight)
+                    .align(Alignment.TopCenter),
+                contentScale = ContentScale.Crop
+            )
 
 }
