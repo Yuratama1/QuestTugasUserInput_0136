@@ -11,4 +11,5 @@
     <color name="purple_primary">#7139D8</color>
     <color name="form_white">#FFFFFF</color>
     <color name="form_text">#292929</color>
+    <color name="form_hint">#777777</color>
 </resources>
