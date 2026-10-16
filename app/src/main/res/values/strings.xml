@@ -13,4 +13,5 @@
     <string name="skill_web">Web</string>
     <string name="proceed">Proceed</string>
     <string name="select_experience">Pilih pengalaman</string>
+    <string name="date_not_selected">Pilih tanggal lahir</string>
 </resources>
