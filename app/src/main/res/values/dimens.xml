@@ -3,4 +3,5 @@
     <dimen name="screen_padding">16dp</dimen>
     <dimen name="form_spacing">8dp</dimen>
     <dimen name="field_height">44dp</dimen>
+    <dimen name="form_corner_radius">24dp</dimen>
 </resources>
