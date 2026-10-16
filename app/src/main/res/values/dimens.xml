@@ -4,4 +4,6 @@
     <dimen name="form_spacing">8dp</dimen>
     <dimen name="field_height">44dp</dimen>
     <dimen name="form_corner_radius">24dp</dimen>
-    <dimen name="header_height">150dp</dimen></resources>
+    <dimen name="header_height">150dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+</resources>
